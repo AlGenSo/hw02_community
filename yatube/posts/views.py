@@ -2,7 +2,7 @@ from django.shortcuts import get_object_or_404, render
 from .models import Post, Group
 
 
-# Create views.
+# view-функция для главной страницы
 def index(request):
     template = 'posts/index.html'
     posts = Post.objects.order_by('-pub_date')[:10]
@@ -13,9 +13,11 @@ def index(request):
         'posts': posts,
         'h1text': h1text,
     }
+
     return render(request, template, context)
 
 
+# view-функция для страницы на которой будут посты
 def groups_posts(request, slug):
     template = 'posts/group_list.html'
     group = get_object_or_404(Group, slug=slug)
@@ -30,4 +32,5 @@ def groups_posts(request, slug):
         'h1text': h1text,
         'ptext': ptext,
     }
+
     return render(request, template, context)

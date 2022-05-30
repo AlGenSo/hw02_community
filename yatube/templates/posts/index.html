@@ -2,12 +2,18 @@
 {%  extends 'base.html'  %}
 
 {%  block title  %}
-{{ title }}
+  {% autoescape on %}
+    {{ title }}
+    {% endautoescape %}
 {%  endblock  %}
 {%  block content  %}
 <!-- класс py-5 создает отступы сверху и снизу блока -->
 <div class="container py-5">
-  <h1>{{ h1text }}</h1>
+  <h1>
+    {% autoescape on %}
+      {{ h1text }}
+    {% endautoescape %}
+  </h1>
   <article>
   {%  for post in posts  %}
     <ul>
@@ -19,7 +25,9 @@
       </li>
     </ul>
     <p>
-      {{ post.text }}
+      {% autoescape on %}
+        {{ post.text }}
+      {% endautoescape %}
     </p>
     {%  if post.group  %}
       <a href="{% url 'posts:group_list' post.group.slug %}">

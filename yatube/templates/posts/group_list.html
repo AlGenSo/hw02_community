@@ -2,7 +2,9 @@
 
 {% load static %}
 {%  block title  %}
-{{ title }}
+  {% autoescape on %}
+    {{ title }}
+  {% endautoescape %}
 {%  endblock  %}
 {%  block content  %}
   <!-- класс py-5 создает отступы сверху и снизу блока -->
@@ -11,12 +13,18 @@
       <img src="{% static 'img/LNT.png' %}"
       width="75" height="80" alt="">
     </div>
-    <h1>{{ h1text }}</h1>
+    <h1>
+      {% autoescape on %}
+        {{ h1text }}
+      {% endautoescape %}
+    </h1>
     <p>
-      {{ ptext }}
+      {% autoescape on %}
+        {{ ptext }}
+      {% endautoescape %}
     </p>
+    {%  for post in posts  %}
     <article>
-      {%  for post in posts  %}
       <ul>
         <li>
           Автор: {{ post.author.get_full_name }}
@@ -26,7 +34,9 @@
         </li>
       </ul>      
       <p>
-        {{ post.text }}
+        {% autoescape on %}
+          {{ post.text }}
+        {% endautoescape %}
       </p>
     </article>
     {%  if not forloop.last %}<hr>{% endif  %}
