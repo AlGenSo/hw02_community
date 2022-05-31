@@ -1,13 +1,12 @@
 from django.contrib import admin
-from .models import Post, Group
 
-# Создание класса PostAdmin, наследник модели admin.ModelAdmin
+from .models import Post, Group
 
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    '''Создание класса PostAdmin, наследник модели admin.ModelAdmin'''
 
-    # Перечисляем поля, которые должны отображаться в админке
     list_display = (
         'pk',
         'text',
@@ -15,13 +14,9 @@ class PostAdmin(admin.ModelAdmin):
         'author',
         'group',
     )
-    # Список групп
     list_editable = ('group',)
-    # Интерфейс для поиска по тексту постов
     search_fields = ('text',)
-    # Возможность фильтрации по дате
     list_filter = ('pub_date',)
-    # Это свойство сработает для всех колонок: где пусто — там будет эта строка
     empty_value_display = '-пусто-'
 
 

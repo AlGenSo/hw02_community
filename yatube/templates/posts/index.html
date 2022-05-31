@@ -1,21 +1,19 @@
-<!-- templates/posts/index.html -->
 {%  extends 'base.html'  %}
 
 {%  block title  %}
   {% autoescape on %}
-    {{ title }}
-    {% endautoescape %}
+    Последние обновления на сайте
+  {% endautoescape %}
 {%  endblock  %}
 {%  block content  %}
-<!-- класс py-5 создает отступы сверху и снизу блока -->
 <div class="container py-5">
   <h1>
     {% autoescape on %}
-      {{ h1text }}
+      Последние обновления на сайте
     {% endautoescape %}
   </h1>
-  <article>
   {%  for post in posts  %}
+  <article>
     <ul>
       <li>
         Автор: {{ post.author.get_full_name }}
@@ -26,16 +24,15 @@
     </ul>
     <p>
       {% autoescape on %}
-        {{ post.text }}
+        {{ post.text|linebreaks }}
       {% endautoescape %}
     </p>
-    {%  if post.group  %}
+    {% if post.group %}
       <a href="{% url 'posts:group_list' post.group.slug %}">
         все записи группы</a>
     {%  endif  %}
   </article>
-  {%  if not forloop.last %}<hr>{% endif  %}
-  {%  endfor  %}
-  <!-- под последним постом нет линии -->
+  {% if not forloop.last %}<hr>{% endif %}
+  {% endfor %}
 </div>
 {%  endblock  %}

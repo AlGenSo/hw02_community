@@ -3,11 +3,10 @@
 {% load static %}
 {%  block title  %}
   {% autoescape on %}
-    {{ title }}
+    Записи сообщества {{ group.title }}
   {% endautoescape %}
 {%  endblock  %}
 {%  block content  %}
-  <!-- класс py-5 создает отступы сверху и снизу блока -->
   <div class="container py-5">
     <div style="float:left; padding-right:30px;">
       <img src="{% static 'img/LNT.png' %}"
@@ -15,12 +14,12 @@
     </div>
     <h1>
       {% autoescape on %}
-        {{ h1text }}
+        Записи сообщества {{ group.title }}
       {% endautoescape %}
     </h1>
     <p>
       {% autoescape on %}
-        {{ ptext }}
+        {{ group.discription }}
       {% endautoescape %}
     </p>
     {%  for post in posts  %}
@@ -35,12 +34,11 @@
       </ul>      
       <p>
         {% autoescape on %}
-          {{ post.text }}
+          {{ post.text|linebreaks }}
         {% endautoescape %}
       </p>
     </article>
     {%  if not forloop.last %}<hr>{% endif  %}
     {%  endfor  %}
-    <!-- под последним постом нет линии -->
   </div>
 {%  endblock  %}
