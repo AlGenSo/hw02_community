@@ -1,1 +1,2 @@
-RECENT_POSTS = 10
+'''Список констант проекта'''
+LIMIT_COUNTS_POSTS = 10

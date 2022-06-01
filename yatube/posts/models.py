@@ -33,7 +33,7 @@ class Post(models.Model):
 
     class Meta:
         '''Контейнер класса Post с фильтром даты'''
-        ordering = ['-pub_date']
+        ordering = ('-pub_date',)
 
 
 class Group(models.Model):
